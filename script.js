@@ -83,3 +83,41 @@ document.getElementById("choose").addEventListener("click", () => {
     ], {duration:1400+Math.random()*700, easing:"ease-out"}).onfinish=()=>heart.remove();
   }
 });
+
+
+// "Keep this forever" — packages the current three website files into a ZIP.
+document.getElementById("downloadSite").addEventListener("click", async () => {
+  const status = document.getElementById("downloadStatus");
+  status.textContent = "Making your little keepsake... ❤️";
+
+  try {
+    const zip = new JSZip();
+
+    const files = {
+      "index.html": document.documentElement.outerHTML,
+      "style.css": await fetch("style.css").then(r => r.text()),
+      "script.js": await fetch("script.js").then(r => r.text())
+    };
+
+    // Avoid nesting an enormous live page snapshot by restoring the original
+    // index file structure from the current document.
+    zip.file("index.html", files["index.html"]);
+    zip.file("style.css", files["style.css"]);
+    zip.file("script.js", files["script.js"]);
+
+    const blob = await zip.generateAsync({type: "blob"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Nidhi-Love-Website.zip";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    status.textContent = "It's yours. Keep it safe. ❤️";
+  } catch (error) {
+    status.textContent = "Couldn't make the download. Try again.";
+    console.error(error);
+  }
+});

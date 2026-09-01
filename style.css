@@ -107,3 +107,24 @@ footer { text-align:center; padding:30px; opacity:.35; font-size:11px; }
   .reason-grid { grid-template-columns:1fr; }
   .letter { padding:28px; }
 }
+
+
+.keep-section {
+  text-align: center;
+  padding: 100px 22px 80px;
+  background: #0b070d;
+}
+.keep-section h2 {
+  font-size: clamp(48px, 7vw, 76px);
+  margin: 12px 0;
+}
+.keep-section p:not(.eyebrow):not(.download-status) {
+  color: #d9cbd1;
+  margin-bottom: 28px;
+}
+.download-status {
+  min-height: 20px;
+  margin-top: 15px;
+  font-size: 12px;
+  opacity: .7;
+}
