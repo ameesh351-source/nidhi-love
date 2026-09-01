@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Nidhi ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="stars"></div>
+
+  <!-- Secret entrance -->
+  <section id="gate" class="screen">
+    <div class="gate-card">
+      <div class="tiny-heart">♥</div>
+      <p class="eyebrow">A PRIVATE LITTLE CORNER OF THE INTERNET</p>
+      <h1>For Nidhi.</h1>
+      <p class="sub">This page was made for one person.<br>And that's you. ❤️</p>
+
+      <div class="lock-row">
+        <input id="password" type="password" placeholder="Enter the secret..." autocomplete="off">
+        <button id="unlock">Open ♥</button>
+      </div>
+      <p id="wrong" class="wrong"></p>
+      <p class="hint">Hint: it's something only we would know.</p>
+    </div>
+  </section>
+
+  <!-- Main experience -->
+  <main id="site" class="hidden">
+    <section class="hero">
+      <p class="eyebrow">HEY, NIDHI</p>
+      <h2 id="heroTitle">I made you a little something.</h2>
+      <p class="hero-sub">Not because I needed a reason.<br>Just because I wanted to make you smile.</p>
+      <button class="glow-button" id="begin">Begin our little story ↓</button>
+    </section>
+
+    <section class="letter-section" id="letter">
+      <div class="envelope" id="envelope">
+        <div class="envelope-top"></div>
+        <div class="envelope-body">💌</div>
+      </div>
+
+      <div class="letter hidden" id="letterCard">
+        <p class="eyebrow">A LETTER FOR YOU</p>
+        <h2>Dear Nidhi,</h2>
+        <p id="typed"></p>
+        <span class="signature">— yours, always ❤️</span>
+      </div>
+    </section>
+
+    <section class="reasons">
+      <p class="eyebrow">THINGS I LOVE ABOUT YOU</p>
+      <h2>And I could keep going...</h2>
+      <div class="reason-grid">
+        <button class="reason" data-text="You make even the most ordinary moments feel special.">01 <span>the little moments</span></button>
+        <button class="reason" data-text="I love how talking to you can turn a completely normal day into a good one.">02 <span>your presence</span></button>
+        <button class="reason" data-text="There is something about your smile that can completely change my mood.">03 <span>that smile</span></button>
+        <button class="reason" data-text="Most importantly, I love that you're you. No replacement. No comparison. Just you.">04 <span>simply you</span></button>
+      </div>
+      <div id="reasonReveal" class="reason-reveal">Tap one.</div>
+    </section>
+
+    <section class="finale">
+      <div class="orbit-heart">♥</div>
+      <p class="eyebrow">ONE LAST THING</p>
+      <h2>If I had to choose again...</h2>
+      <button class="choose" id="choose">I'd choose you. ❤️</button>
+      <div id="finalMessage" class="final-message hidden">
+        <p>In every version of the story,<br>I'd still find my way to you.</p>
+        <strong>I love you, Nidhi.</strong>
+      </div>
+    </section>
+
+    <footer>Made with Python first... and then a ridiculous amount of love. ❤️</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
