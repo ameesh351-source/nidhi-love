@@ -1,123 +1,69 @@
-const SECRET = "nidhi"; // CHANGE THIS to your private password
+const SECRET = "nidhi";
+const $ = id => document.getElementById(id);
+const gate = $("gate"), site = $("site"), password = $("password"), wrong = $("wrong");
 
-const gate = document.getElementById("gate");
-const site = document.getElementById("site");
-const password = document.getElementById("password");
-const wrong = document.getElementById("wrong");
-
-function unlock() {
-  if (password.value.trim().toLowerCase() === SECRET.toLowerCase()) {
-    gate.classList.add("hidden");
-    site.classList.remove("hidden");
-    document.body.style.overflowX = "hidden";
-    window.scrollTo(0, 0);
-  } else {
-    wrong.textContent = "Hmm... that's not our secret. Try again ❤️";
-    password.value = "";
-    password.focus();
-  }
+function unlock(){
+  if(password.value.trim().toLowerCase() === SECRET){
+    gate.classList.add("hidden"); site.classList.remove("hidden"); window.scrollTo(0,0);
+  } else { wrong.textContent="That doesn't seem to be our secret. Try again ❤️"; password.value=""; password.focus(); }
 }
-document.getElementById("unlock").addEventListener("click", unlock);
-password.addEventListener("keydown", e => { if (e.key === "Enter") unlock(); });
+$("unlock").addEventListener("click",unlock);
+password.addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
 
-document.getElementById("begin").addEventListener("click", () => {
-  document.getElementById("letter").scrollIntoView({behavior:"smooth"});
+$("begin").addEventListener("click",()=>$("letter").scrollIntoView({behavior:"smooth"}));
+
+const letterText=`I know an interactive website cannot fix what happened.
+
+And I don't want it to.
+
+I want to start by saying I'm sorry. I'm sorry for the things I did that hurt you, for the moments when I didn't understand what you needed, and for every time my actions made you feel like your feelings weren't important.
+
+I love you, Nidhi. But loving you also means respecting you when you're angry, hurt, confused, or unsure about us.
+
+I'm not asking you to forget anything. I'm asking whether there is any part of you that still wants to have an honest conversation and see whether I can do better.
+
+If there is, I'll listen. If there isn't, I'll respect that too.
+
+Thank you for reading this. ❤️`;
+
+$("envelope").addEventListener("click",()=>{
+  $("envelope").classList.add("hidden"); const card=$("letterCard"); card.classList.remove("hidden");
+  const target=$("typed"); let i=0; function type(){if(i<letterText.length){target.textContent+=letterText[i++];setTimeout(type,14)}} type();
 });
 
-const letterText = `I could have just written you a normal message.
+document.querySelectorAll(".reason").forEach(btn=>btn.addEventListener("click",()=>$("reasonReveal").textContent=btn.dataset.text));
 
-But normal felt a little too boring for you.
+document.querySelectorAll(".choice-row button").forEach(btn=>btn.addEventListener("click",()=>{
+  btn.parentElement.querySelectorAll("button").forEach(b=>b.classList.remove("selected")); btn.classList.add("selected");
+}));
 
-So I made this tiny corner of the internet instead — a place with your name on it, because you deserve little things made especially for you.
+function getAnswers(){
+  const selected=q=>{const b=document.querySelector(`[data-question="${q}"] .selected`);return b?b.dataset.value:"Not answered"};
+  return {hurt:$("q1").value.trim()||"Not answered",chance:selected("q2"),needs:$("q3").value.trim()||"Not answered",love:$("q4").value.trim()||"Not answered",respect:selected("q5")};
+}
+function summary(){const a=getAnswers();return `NIDHI — HONEST CONVERSATION\n\nWhat hurt you most:\n${a.hurt}\n\nDo you still want a chance:\n${a.chance}\n\nWhat you would need from me:\n${a.needs}\n\nOne thing you loved about us:\n${a.love}\n\nDo you want your decision respected:\n${a.respect}`}
 
-I don't know what the future will look like, or how many stories we'll add to ours.
-
-I just know that when I think about the person I want beside me through all of it, it's you.
-
-Thank you for being you.
-
-And thank you for being my favourite person to annoy, love, laugh with, and come back to.
-
-❤️`;
-
-document.getElementById("envelope").addEventListener("click", () => {
-  document.getElementById("envelope").classList.add("hidden");
-  const card = document.getElementById("letterCard");
-  card.classList.remove("hidden");
-  const target = document.getElementById("typed");
-  target.textContent = "";
-  let i = 0;
-  function type() {
-    if (i < letterText.length) {
-      target.textContent += letterText[i++];
-      setTimeout(type, 18);
-    }
-  }
-  type();
+$("finishQuestions").addEventListener("click",()=>{
+  localStorage.setItem("nidhiAnswers",JSON.stringify(getAnswers()));
+  $("saveStatus").textContent="Saved only in this browser. Nothing was uploaded. ❤️";
+  $("finale").scrollIntoView({behavior:"smooth"});
 });
 
-document.querySelectorAll(".reason").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.getElementById("reasonReveal").textContent = btn.dataset.text;
-  });
+$("showFinal").addEventListener("click",()=>{
+  $("finalMessage").classList.remove("hidden"); $("showFinal").textContent="Thank you for hearing me. ❤️";
+  for(let i=0;i<18;i++){const h=document.createElement("span");h.textContent="♥";h.style.position="fixed";h.style.left=(45+Math.random()*10)+"vw";h.style.top="55vh";h.style.fontSize=(14+Math.random()*22)+"px";h.style.pointerEvents="none";h.style.zIndex=10;document.body.appendChild(h);h.animate([{transform:"translateY(0) scale(.7)",opacity:1},{transform:`translate(${(Math.random()-.5)*220}px,-${120+Math.random()*300}px) scale(1.3)`,opacity:0}],{duration:1400+Math.random()*700,easing:"ease-out"}).onfinish=()=>h.remove()}
 });
 
-document.getElementById("choose").addEventListener("click", () => {
-  const msg = document.getElementById("finalMessage");
-  msg.classList.remove("hidden");
-  document.getElementById("choose").textContent = "Always. ❤️";
-  for (let i = 0; i < 18; i++) {
-    const heart = document.createElement("span");
-    heart.textContent = "♥";
-    heart.style.position = "fixed";
-    heart.style.left = (45 + Math.random()*10) + "vw";
-    heart.style.top = "55vh";
-    heart.style.fontSize = (14 + Math.random()*22) + "px";
-    heart.style.color = "#ff6f91";
-    heart.style.pointerEvents = "none";
-    heart.style.zIndex = "10";
-    document.body.appendChild(heart);
-    heart.animate([
-      {transform:"translateY(0) scale(.7)", opacity:1},
-      {transform:`translate(${(Math.random()-.5)*220}px,-${120+Math.random()*300}px) scale(1.3)`,opacity:0}
-    ], {duration:1400+Math.random()*700, easing:"ease-out"}).onfinish=()=>heart.remove();
-  }
+$("copySummary").addEventListener("click",async()=>{
+  try{await navigator.clipboard.writeText(summary());$("copyStatus").textContent="Copied. If you screen-record this page, please make sure she knows and is comfortable with the recording. ❤️"}
+  catch(e){$("copyStatus").textContent="Copy wasn't available here. The answers remain in this browser."}
 });
 
-
-// "Keep this forever" — packages the current three website files into a ZIP.
-document.getElementById("downloadSite").addEventListener("click", async () => {
-  const status = document.getElementById("downloadStatus");
-  status.textContent = "Making your little keepsake... ❤️";
-
-  try {
-    const zip = new JSZip();
-
-    const files = {
-      "index.html": document.documentElement.outerHTML,
-      "style.css": await fetch("style.css").then(r => r.text()),
-      "script.js": await fetch("script.js").then(r => r.text())
-    };
-
-    // Avoid nesting an enormous live page snapshot by restoring the original
-    // index file structure from the current document.
-    zip.file("index.html", files["index.html"]);
-    zip.file("style.css", files["style.css"]);
-    zip.file("script.js", files["script.js"]);
-
-    const blob = await zip.generateAsync({type: "blob"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "Nidhi-Love-Website.zip";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-
-    status.textContent = "It's yours. Keep it safe. ❤️";
-  } catch (error) {
-    status.textContent = "Couldn't make the download. Try again.";
-    console.error(error);
-  }
+$("clearAnswers").addEventListener("click",()=>{
+  localStorage.removeItem("nidhiAnswers"); ["q1","q3","q4"].forEach(id=>$(id).value=""); document.querySelectorAll(".choice-row button").forEach(b=>b.classList.remove("selected")); $("copyStatus").textContent="Answers cleared from this browser.";
 });
+
+try{
+ const saved=JSON.parse(localStorage.getItem("nidhiAnswers"));
+ if(saved){$("q1").value=saved.hurt==="Not answered"?"":saved.hurt;$("q3").value=saved.needs==="Not answered"?"":saved.needs;$("q4").value=saved.love==="Not answered"?"":saved.love;}
+}catch(e){}
