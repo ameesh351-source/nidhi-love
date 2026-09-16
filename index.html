@@ -3,87 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Nidhi ❤️</title>
+  <title>For Nidhi — One More Conversation ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="stars"></div>
 
-  <!-- Secret entrance -->
   <section id="gate" class="screen">
     <div class="gate-card">
       <div class="tiny-heart">♥</div>
       <p class="eyebrow">A PRIVATE LITTLE CORNER OF THE INTERNET</p>
       <h1>For Nidhi.</h1>
-      <p class="sub">This page was made for one person.<br>And that's you. ❤️</p>
-
+      <p class="sub">I made this because I have something important to say.<br>No pressure. Just read it when you're ready. ❤️</p>
       <div class="lock-row">
-        <input id="password" type="password" placeholder="Enter the secret..." autocomplete="off">
+        <input id="password" type="password" placeholder="Our secret..." autocomplete="off">
         <button id="unlock">Open ♥</button>
       </div>
       <p id="wrong" class="wrong"></p>
-      <p class="hint">Hint: it's something only we would know.</p>
+      <p class="hint">Hint: the same secret as before.</p>
     </div>
   </section>
 
-  <!-- Main experience -->
   <main id="site" class="hidden">
     <section class="hero">
-      <p class="eyebrow">HEY, NIDHI</p>
-      <h2 id="heroTitle">I made you a little something.</h2>
-      <p class="hero-sub">Not because I needed a reason.<br>Just because I wanted to make you smile.</p>
-      <button class="glow-button" id="begin">Begin our little story ↓</button>
+      <div>
+        <p class="eyebrow">HEY, NIDHI</p>
+        <h2>Before we become a memory,<br>can we have one honest conversation?</h2>
+        <p class="hero-sub">This isn't here to corner you into staying.<br>It's here because I love you, I'm sorry, and I want to listen.</p>
+        <button class="glow-button" id="begin">Start ↓</button>
+      </div>
     </section>
 
     <section class="letter-section" id="letter">
-      <div class="envelope" id="envelope">
-        <div class="envelope-top"></div>
-        <div class="envelope-body">💌</div>
-      </div>
+      <button class="envelope" id="envelope" aria-label="Open letter">
+        <span class="envelope-top"></span>
+        <span class="envelope-body">💌</span>
+      </button>
 
       <div class="letter hidden" id="letterCard">
-        <p class="eyebrow">A LETTER FOR YOU</p>
+        <p class="eyebrow">I'M SORRY</p>
         <h2>Dear Nidhi,</h2>
         <p id="typed"></p>
-        <span class="signature">— yours, always ❤️</span>
+        <span class="signature">— Ameesh ❤️</span>
       </div>
     </section>
 
-    <section class="reasons">
-      <p class="eyebrow">THINGS I LOVE ABOUT YOU</p>
-      <h2>And I could keep going...</h2>
+    <section class="reasons" id="memories">
+      <p class="eyebrow">OUR LITTLE THINGS</p>
+      <h2>Tap what you remember.</h2>
+      <p class="section-copy">I don't want to reduce us to one fight. These are reminders of the ordinary moments that meant a lot to me.</p>
       <div class="reason-grid">
-        <button class="reason" data-text="You make even the most ordinary moments feel special.">01 <span>the little moments</span></button>
-        <button class="reason" data-text="I love how talking to you can turn a completely normal day into a good one.">02 <span>your presence</span></button>
-        <button class="reason" data-text="There is something about your smile that can completely change my mood.">03 <span>that smile</span></button>
-        <button class="reason" data-text="Most importantly, I love that you're you. No replacement. No comparison. Just you.">04 <span>simply you</span></button>
+        <button class="reason" data-text="The random conversations that somehow lasted way longer than we planned.">01 <span>the long talks</span></button>
+        <button class="reason" data-text="The stupid jokes, teasing, and moments that made absolutely no sense to anyone else.">02 <span>our nonsense</span></button>
+        <button class="reason" data-text="The quiet moments when just knowing you were there felt enough.">03 <span>your presence</span></button>
+        <button class="reason" data-text="The little memories I still replay because they were genuinely happy moments for me.">04 <span>the memories</span></button>
       </div>
-      <div id="reasonReveal" class="reason-reveal">Tap one.</div>
+      <div id="reasonReveal" class="reason-reveal">Choose one.</div>
     </section>
 
-    <section class="finale">
+    <section class="questions" id="questions">
+      <p class="eyebrow">YOUR TURN</p>
+      <h2>I want the honest answer.</h2>
+      <p class="section-copy">These answers stay in this browser unless you choose to show me. You can skip anything.</p>
+
+      <div class="question-card">
+        <label for="q1">What hurt you the most?</label>
+        <textarea id="q1" placeholder="Tell me honestly..." maxlength="500"></textarea>
+      </div>
+
+      <div class="question-card">
+        <label>Do you still want there to be a chance for us?</label>
+        <div class="choice-row" data-question="q2">
+          <button data-value="Yes">Yes, I do ❤️</button>
+          <button data-value="I don't know">I don't know</button>
+          <button data-value="No">No</button>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <label>What would you need from me to even consider trying again?</label>
+        <textarea id="q3" placeholder="More honesty? More patience? Something specific?" maxlength="500"></textarea>
+      </div>
+
+      <div class="question-card">
+        <label>One thing you genuinely loved about us?</label>
+        <textarea id="q4" placeholder="Even a tiny thing counts." maxlength="300"></textarea>
+      </div>
+
+      <div class="question-card last-question">
+        <label>And one last thing — do you want me to respect your decision, whatever it is?</label>
+        <div class="choice-row" data-question="q5">
+          <button data-value="Yes">Yes</button>
+          <button data-value="Please give me space">Please give me space</button>
+        </div>
+      </div>
+
+      <button class="glow-button wide" id="finishQuestions">Save my answers in this browser ❤️</button>
+      <p id="saveStatus" class="status"></p>
+    </section>
+
+    <section class="finale" id="finale">
       <div class="orbit-heart">♥</div>
-      <p class="eyebrow">ONE LAST THING</p>
-      <h2>If I had to choose again...</h2>
-      <button class="choose" id="choose">I'd choose you. ❤️</button>
+      <p class="eyebrow">NO MORE GAMES</p>
+      <h2>Whatever your answer,<br>I want it to be yours.</h2>
+      <p class="final-copy">I don't want you to say yes because you're afraid of losing me. I want you to say what you actually feel. If there's still a path for us, I'll walk it with you. If there isn't, I'll respect that too.</p>
+      <button class="glow-button" id="showFinal">Read my last message</button>
       <div id="finalMessage" class="final-message hidden">
-        <p>In every version of the story,<br>I'd still find my way to you.</p>
-        <strong>I love you, Nidhi.</strong>
+        <p>Nidhi, I love you. I'm sorry for the ways I hurt you, and I'm not asking you to erase what happened.</p>
+        <p>I'm asking for one thing only: if any part of you still believes we are worth another try, tell me what I need to change and let me prove it through actions, not promises.</p>
+        <p>And if your answer is no, I will be hurt, but I will respect you.</p>
+        <strong>I love you. Thank you for reading all of this. ❤️</strong>
       </div>
     </section>
 
-    <section class="keep-section">
-      <p class="eyebrow">KEEP THIS LITTLE CORNER</p>
-      <h2>Want to keep it forever?</h2>
-      <p>Because some things are too special to leave on the internet. ❤️</p>
-      <button class="glow-button" id="downloadSite">💾 Keep this forever</button>
-      <p id="downloadStatus" class="download-status"></p>
+    <section class="share-section">
+      <p class="eyebrow">READY?</p>
+      <h2>Make a little record of this moment.</h2>
+      <p class="section-copy">You can screen-record her answers with her knowledge and send the recording to yourself. Nothing is uploaded by this page.</p>
+      <div class="share-buttons">
+        <button class="glow-button" id="copySummary">Copy answer summary</button>
+        <button class="ghost-button" id="clearAnswers">Clear answers</button>
+      </div>
+      <p id="copyStatus" class="status"></p>
     </section>
 
-    <footer>Made with Python first... and then a ridiculous amount of love. ❤️</footer>
+    <footer>Made with love by Ameesh for Nidhi. ❤️</footer>
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
